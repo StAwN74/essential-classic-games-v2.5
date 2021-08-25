@@ -107,9 +107,9 @@ public class App extends Application {
 	private Label lbl2 = new Label("Flappy leader: connection required");
 	private Button btn = new Button ("Connect");
 	private Button btn4 = new Button ("Create User");
-	private Button btn3 = new Button ("Play Pong");
+	private Button btn3 = new Button ("Pong");
 	private Button btn5 = new Button ("Offline Pong");
-	private Button btn6 = new Button ("Play Flappy");
+	private Button btn6 = new Button ("Flappy");
 	//private Button btn7 = new Button ("View Stats");
 	
     private Database db = new Database();
@@ -169,16 +169,16 @@ public class App extends Application {
         box.getChildren().add(btn);
         box.getChildren().add(btn4);
         box.getChildren().add(btn5);
-        box2.getChildren().add(btn3);
-        box2.getChildren().add(btn6);
         box.setPadding(new Insets(60));
         box2.setPadding(new Insets(60));
         box3.setPadding(new Insets(64));
         
-        String statsURL = "http://www.google.com";
+        String statsURL = "https://www.stawn.live";
         Button openURLButton = new Button("View Stats");
         openURLButton.setOnAction(e -> getHostServices().showDocument(statsURL));
-        box3.getChildren().add(openURLButton);
+        box2.getChildren().add(openURLButton);
+        box2.getChildren().add(btn3);
+        box2.getChildren().add(btn6);
         
         lbl.setPrefSize(640, 50);
         lbl.setTextFill(Color.INDIANRED);
