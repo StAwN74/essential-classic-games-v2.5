@@ -5,7 +5,8 @@ Stats will are now displayed on the web!  -> https://www.stawn.live
 Contact me here for any question or request.
 
 ## Requirements
-Please install Java SDK 16 (https://www.oracle.com/java/technologies/javase-jdk16-downloads.html) or JRE 8 minimum, which is lighter https://www.oracle.com/fr/java/technologies/javase-jre8-downloads.html).  
+Please install Java SDK 16 (https://www.oracle.com/java/technologies/javase-jdk16-downloads.html)
+or JRE 8 minimum, which is lighter: https://www.oracle.com/fr/java/technologies/javase-jre8-downloads.html.  
 Just use the .jar file or the .exe file and double click.  
 If you don't download the full repository, **you need to download the resources folder too!** It must be placed right besides the .jar or the .exe file.  
 
