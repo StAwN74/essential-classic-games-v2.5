@@ -119,7 +119,7 @@ public class App extends Application {
     
     //private BorderPane root7 = new BorderPane();
     private BorderPane root = new BorderPane();
-    private Scene scene = new Scene(root, 640, 480);
+    private Scene scene = new Scene(root, 800, 600);
     
     //Pong vars
     private static final int width = 800;
