@@ -1,7 +1,8 @@
 # Essential Classic Games
 
 This app runs games and saves your best scores into a database. No special config needed.  
-Stats will are now displayed on the web!  -> https://www.stawn.live  
+Stats are now displayed on the web!  
+-> https://www.stawn.live  
 Contact me here for any question or request.
 
 ## Requirements
