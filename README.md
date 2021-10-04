@@ -9,12 +9,12 @@ Contact me here for any question or request.
 Please install Java SDK 16 (https://www.oracle.com/java/technologies/javase-jdk16-downloads.html)
 or JRE 8 minimum, which is lighter: https://www.oracle.com/fr/java/technologies/javase-jre8-downloads.html.  
 Just use the .jar file or the .exe file and double click.  
-If you don't download the full repository, **you need to download the resources folder too!** It must be placed right besides the .jar or the .exe file.  
+If you don't download the full repository, **you need to take resources folder too!** They must be placed right besides the .jar or the .exe file.  
 
 ## Notes
-Note: It uses **NORM** SQL implementation (Copyright 2014, Dieselpoint, Inc. under Apache License v2.0).  
+Note: The app uses **NORM** SQL implementation (Copyright 2014, Dieselpoint, Inc. under Apache License v2.0).  
 Pong based on Gaspared's and William's codes, and Flappy on Mompi's and Pinkman's games.  
-Leaderboard does not deal with even scores.
+Leaderboard displays even scores based on your id or your name, so it may vary in this case.
 
 ## Change log
 25/08/21: Added Stats button (v2.3).  
