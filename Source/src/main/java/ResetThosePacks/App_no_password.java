@@ -206,7 +206,7 @@ public class App extends Application {
         lbl2.setVisible(false);
         
         //Database connection - we need to do this only once
-        db.setJdbcUrl("jdbc:mysql://sql512.main-hosting.eu/u465692193_online_pong?useSSL=true");
+        db.setJdbcUrl("jdbc:mysql://sql512.main-hosting.eu/u465692193_online_pong?useSSL=false");
         db.setUser("****");
         db.setPassword("****");
         
@@ -432,7 +432,7 @@ public class App extends Application {
             
             //Compare entered text and pass with DB. If so, player is connected.
             if (user != null) { // user with nameRecon AND passRecon exists
-            	idPused = user.idP; // saving user id
+            	idPused = user.id; // saving user id
             	maxScore = user.BestScore; // NB: BestScore can't be null (default 0)
             	maxFlap = user.BestFlap;
             	System.out.println("Connected"); // just checking
@@ -486,7 +486,7 @@ public class App extends Application {
         		TestMySessions session = new TestMySessions();
                 session.NomG = "Pong";
                 session.idG = 1;
-                session.idP = idPused; // using temp var idPused
+                session.id = idPused; // using temp var idPused
                 //setting DateTime of session in DB
                 Timestamp ts = Timestamp.from(Instant.now());
                 session.DateS = ts;

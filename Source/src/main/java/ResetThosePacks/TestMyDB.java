@@ -14,7 +14,7 @@ public class TestMyDB {
 		
 		@Id
 		@GeneratedValue
-		public int idP;
+		public int id;
 		public String NomP;
 		private String PassP; // Put password as private
 		public int BestScore; // NB: default 0 in table

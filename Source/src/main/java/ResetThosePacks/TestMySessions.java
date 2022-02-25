@@ -10,7 +10,7 @@ import java.util.Date;
 public class TestMySessions {
 	@Id
 	@GeneratedValue
-	public int idS;
+	public int id;
 	public int idG;
 	public String NomG;
 	public int idP;
