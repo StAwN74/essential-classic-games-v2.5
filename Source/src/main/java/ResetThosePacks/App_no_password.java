@@ -486,7 +486,7 @@ public class App extends Application {
         		TestMySessions session = new TestMySessions();
                 session.NomG = "Pong";
                 session.idG = 1;
-                session.id = idPused; // using temp var idPused
+                session.idP = idPused; // using temp var idPused
                 //setting DateTime of session in DB
                 Timestamp ts = Timestamp.from(Instant.now());
                 session.DateS = ts;
@@ -532,7 +532,7 @@ public class App extends Application {
         	
         	//Creating a table related object from TestMyDB class
         	TestMyDB user3 = db.where("NomP=?", nameCreate).first(TestMyDB.class);
-        	//idPused = user3.idP; //temporary fix if idP is null here
+        	//idPused = user3.id; //temporary fix if idP is null here
         	
         	if (user3 == null) { // user doesn't already exist
         		if(nameCreate != "" && passCreate != "") {
