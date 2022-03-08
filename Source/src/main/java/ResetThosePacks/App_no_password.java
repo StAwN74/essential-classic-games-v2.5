@@ -207,8 +207,8 @@ public class App extends Application {
         
         //Database connection - we need to do this only once
         db.setJdbcUrl("jdbc:mysql://sql512.main-hosting.eu/u465692193_online_pong?useSSL=false");
-        db.setUser("****");
-        db.setPassword("****");
+        db.setUser("u465692193_StAwN");
+        db.setPassword("*********");
         
         //var scene = new Scene(root, 640, 480);
         this.stage = stage; //ty Bonbek //otherwise we have a null stage at HandleClick2
