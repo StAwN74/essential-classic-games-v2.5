@@ -492,7 +492,7 @@ public class App extends Application {
                 session.DateS = ts;
                 //Adding the session
                 if (idPused != 0) {
-                	db.insert(session);
+                	//db.insert(session); // Removed due to a Laravel project
                 	System.out.println("New session started");
                 }
         		
@@ -635,7 +635,7 @@ public class App extends Application {
                 session.DateS = ts;
                 //Adding the session
                 if (idPused != 0) {
-                	db.insert(session);
+                	//db.insert(session);
                 	System.out.println("New session started");
                 }
         		
