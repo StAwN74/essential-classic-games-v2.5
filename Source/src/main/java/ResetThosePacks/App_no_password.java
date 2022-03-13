@@ -207,7 +207,7 @@ public class App extends Application {
         
         //Database connection - we need to do this only once
         db.setJdbcUrl("jdbc:mysql://sql512.main-hosting.eu/u465692193_online_pong?useSSL=false");
-        db.setUser("u465692193_StAwN");
+        db.setUser("u465692193_*****");
         db.setPassword("*********");
         
         //var scene = new Scene(root, 640, 480);
@@ -492,7 +492,7 @@ public class App extends Application {
                 session.DateS = ts;
                 //Adding the session
                 if (idPused != 0) {
-                	//db.insert(session); // Removed due to a Laravel project
+                	db.insert(session); // May be removed due to a Laravel project
                 	System.out.println("New session started");
                 }
         		
@@ -635,7 +635,7 @@ public class App extends Application {
                 session.DateS = ts;
                 //Adding the session
                 if (idPused != 0) {
-                	//db.insert(session);
+                	db.insert(session);
                 	System.out.println("New session started");
                 }
         		
