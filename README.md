@@ -3,6 +3,7 @@
 This app runs games and saves your best scores into a database. No special config needed.  
 Stats are now displayed on the web! This page will soon be responsive, and include a forum.  
 -> https://www.stawn.live  
+You have the right to claim the deletion of your user account.  
 Contact me here for any question or request.
 
 ## Requirements
