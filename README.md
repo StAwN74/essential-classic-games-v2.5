@@ -1,16 +1,16 @@
 # Essential Classic Games
 
 This app runs games and saves your best scores into a database. No special config needed.  
-Stats are now displayed on the web! This page will soon be responsive, and include a forum.  
+Stats are now displayed on the web! This page includes detailed user stats and a messaging app.  
 -> https://www.stawn.live  
 You have the right to claim the deletion of your user account.  
-Contact me here for any question or request.
+Contact me here for any question or request, or send a message to the Admin through the website.
 
 ## Requirements
 Please install Java SDK 16 (https://www.oracle.com/java/technologies/javase-jdk16-downloads.html)
 or JRE 8 minimum, which is lighter: https://www.oracle.com/fr/java/technologies/javase-jre8-downloads.html.  
 Just use the .jar file or the .exe file and double click.  
-If you don't download the full repository, **you need to take resources folder too!** They must be placed right besides the .jar or the .exe file.  
+If you don't download the full repository, **you need to take resources folder too!** This folder must be placed right besides the .jar or the .exe file.  
 
 ## Notes
 Note: The app uses **NORM** SQL implementation (Copyright 2014, Dieselpoint, Inc. under Apache License v2.0).  
