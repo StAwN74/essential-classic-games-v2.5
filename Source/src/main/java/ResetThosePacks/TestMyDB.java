@@ -1,5 +1,6 @@
 package ResetThosePacks;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 //import java.math.BigDecimal;
@@ -9,26 +10,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name="players")
+@Table(name="users")
 public class TestMyDB {
 		
 		@Id
 		@GeneratedValue
-		public int id;
-		public String NomP;
-		private String PassP; // Put password as private
+		public BigInteger id;
+		public String name = "NewUser";
+		public String email = "NoEmail@NoEmail.fr";
+		private String password; // Put password as private
 		public int BestScore; // NB: default 0 in table
 		//public String NomG; // Set to NULL by Java here
 		public int BestFlap;
 		
 		//getter
-		public String getPassP() {
-			return this.PassP;
+		public String getPassword() {
+			return this.password;
 		}
 		
 		//setter
-		public void setPassP(String PassP) {
-			this.PassP = PassP;
+		public void setPassword(String password) {
+			this.password = password;
 		}
 		
 //		public String toString() {

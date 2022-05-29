@@ -18,6 +18,7 @@ Pong based on Gaspared's and William's codes, and Flappy on Mompi's and Pinkman'
 Leaderboard displays even scores based on your id or your name, so it may vary in this case.
 
 ## Change log
+09/03/22: Now uses bcrypt instead of md5 for password encryption.
 27/02/22: Modified 3 DB column names to start fitting a Laravel project.  
 25/08/21: Added Stats button (v2.3).  
 09/08/21: Now uses encrypted passwords, you may need to re-create an account.  

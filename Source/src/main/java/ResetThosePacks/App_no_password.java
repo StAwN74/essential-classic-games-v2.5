@@ -101,6 +101,8 @@ public class App extends Application {
 		    return md5;
 	}
 	
+	//Due to a Laravel project, players.NomP has become users.name and players.Passp has become users.password
+	
 	private TextField text = new TextField();
 	private PasswordField pass = new PasswordField();
 	private Label lbl = new Label("Not connected");
@@ -207,7 +209,7 @@ public class App extends Application {
         
         //Database connection - we need to do this only once
         db.setJdbcUrl("jdbc:mysql://sql512.main-hosting.eu/u465692193_online_pong?useSSL=false");
-        db.setUser("u465692193_*****");
+        db.setUser("****************");
         db.setPassword("*********");
         
         //var scene = new Scene(root, 640, 480);
@@ -372,7 +374,7 @@ public class App extends Application {
 			scoreP1++;
 			//if scoreP1 > maxScore then db.update()
 			if (scoreP1 > maxScore && offPong == false) {
-				TestMyDB user2 = db.where("NomP=?", nameRecall).first(TestMyDB.class);
+				TestMyDB user2 = db.where("name=?", nameRecall).first(TestMyDB.class);
 	            user2.BestScore = scoreP1;
 	            maxScore = scoreP1;
 	            //user2.NomG = "Pong";
@@ -421,21 +423,28 @@ public class App extends Application {
         	//Create a table object then use it to check if name and pass exist
             //String PassP = db.sql("select PassP from players where NomP like 'Bast'").first(String.class);
         	
+        	String h2 = "";
         	//Creating a table related object from TestMyDB class
-            TestMyDB user = db.where("NomP=? AND PassP=?", nameRecon, encrypt(passRecon)).first(TestMyDB.class);
-            
+            TestMyDB userMe = db.where("name=?", nameRecon).first(TestMyDB.class); // Names are unique, see Create button handle
+            if (userMe!= null) {
+            	String hashed = userMe.getPassword();
+            	h2 = hashed;
+            }
+            else
+            	h2 = "NoPassword !";
             //Best score display
             //TestMyDB leader = db.where("NomG=?", "Pong").orderBy("BestScore").first(TestMyDB.class);
-            TestMyDB leader2 = db.sql("select NomP, BestFlap from players order by BestFlap DESC LIMIT 1").first(TestMyDB.class);
-            TestMyDB leaderEx = db.sql("select NomP, BestScore from players order by BestFlap DESC LIMIT 1").first(TestMyDB.class);
+            TestMyDB leader2 = db.sql("select name, BestFlap from users order by BestFlap DESC LIMIT 1").first(TestMyDB.class);
+            TestMyDB leaderEx = db.sql("select name, BestScore from users order by BestFlap DESC LIMIT 1").first(TestMyDB.class);
             //List<HashMap> list = db.sql("select NomP, BestScore from players order by BestScore DESC LIMIT 3").results(HashMap.class);
             
             //Compare entered text and pass with DB. If so, player is connected.
-            if (user != null) { // user with nameRecon AND passRecon exists
-            	idPused = user.id; // saving user id
-            	maxScore = user.BestScore; // NB: BestScore can't be null (default 0)
-            	maxFlap = user.BestFlap;
+            if (userMe != null && BCrypt.checkpw(passRecon, h2)) { // user with nameRecon AND passRecon exists
+            	idPused = (userMe.id.intValue()); // saving user id
+            	maxScore = userMe.BestScore; // NB: BestScore can't be null (default 0)
+            	maxFlap = userMe.BestFlap;
             	System.out.println("Connected"); // just checking
+            	System.out.println(idPused);
             	lbl.setText("Connected");
             	lbl.setTextFill(Color.BLACK);
             	//if(leader2.BestFlap > 1) {
@@ -444,7 +453,7 @@ public class App extends Application {
             	//else {
             		//lbl2.setText("Flappy leader: " +leader2.NomP +" with " +leader2.BestFlap +" point");
             	//}
-            	lbl2.setText("Pong leader: " +leaderEx.NomP +" with " +leaderEx.BestScore +" point(s)\n" +"Flappy leader: " +leader2.NomP +" with " +leader2.BestFlap +" point(s)");
+            	lbl2.setText("Pong leader: " +leaderEx.name +" with " +leaderEx.BestScore +" point(s)\n" +"Flappy leader: " +leader2.name +" with " +leader2.BestFlap +" point(s)");
             	lbl2.setTextFill(Color.BLACK);
             	lbl2.setVisible(true);
             	stage.setTitle("Connect&Play - " +nameRecon +" : Connected - Previous max score at Flap : " +maxFlap);
@@ -452,7 +461,7 @@ public class App extends Application {
             }
             else {
             	//Second connection with wrong credentials
-            	lbl.setText("Not connected");
+            	lbl.setText("Wrong password");
             	lbl.setTextFill(Color.INDIANRED);
             	lbl2.setText("Flappy leader: connection required");
             	lbl2.setTextFill(Color.BLACK);
@@ -492,7 +501,7 @@ public class App extends Application {
                 session.DateS = ts;
                 //Adding the session
                 if (idPused != 0) {
-                	db.insert(session); // May be removed due to a Laravel project
+                	db.insert(session);
                 	System.out.println("New session started");
                 }
         		
@@ -531,25 +540,44 @@ public class App extends Application {
         	System.out.println(passCreate);
         	
         	//Creating a table related object from TestMyDB class
-        	TestMyDB user3 = db.where("NomP=?", nameCreate).first(TestMyDB.class);
+        	TestMyDB user3 = db.where("name=?", nameCreate).first(TestMyDB.class);
         	//idPused = user3.id; //temporary fix if idP is null here
         	
         	if (user3 == null) { // user doesn't already exist
         		if(nameCreate != "" && passCreate != "") {
-        			TestMyDB user3b = new TestMyDB(); // user3 is null, we need a new object
-        			user3b.NomP = nameCreate;
-        			user3b.setPassP (encrypt(passCreate)); // using the setter of TestMyDB class because PassP is private
-        			//user3b.NomG = "Pong"; // Needed IF NomGg is NOT NULL
-        			//NB: user3b.BestScore is an INT and set to 0 by JavaFX, so the DataBase NULL restriction won't give an error
-        			
-        			db.insert(user3b);
-        			System.out.println("New user created"); // just checking via sysout
-        			lbl.setText("Please connect with new credentials.");
-        			lbl.setTextFill(Color.PURPLE);
-        			lbl2.setText("Flappy leader: connection required");
-                	lbl2.setTextFill(Color.BLACK);
-                	lbl2.setVisible(false);
-        			stage.setTitle("Connect&Play");
+        			if (nameCreate.indexOf("_") != -1) {
+        				//_ not allowed due to the Laravel PHP website rule in Breeze config
+                    	lbl.setText("_ sadly not allowed in player names");
+                    	lbl.setTextFill(Color.BLUE);
+                    	lbl2.setText("Flappy leader: connection required");
+                    	lbl2.setTextFill(Color.BLACK);
+                    	lbl2.setVisible(false);
+                    	stage.setTitle("Connect&Play");
+                    	idPused = 0;
+                    	maxScore = 0;
+                    	maxFlap = 0;
+        			}
+        			else {
+        				//We need a TestMyDBNoId object instead of a TestMyDB one (id being a bigint in this DB) to avoid a pojo error log. long works!
+        				TestMyDBNoId user3b = new TestMyDBNoId(); // user3 is null, we need a new object with default constructor
+        				//TestMyDB findId = db.sql("select id from users order by id DESC LIMIT 1").first(TestMyDB.class);
+        				//user3b.id = findId.id; // Idk how to increment a big int yet, and DB will override it anyway
+        				//System.out.println(user3b.id);
+        				user3b.name = nameCreate;
+        				user3b.email = nameCreate +"@" +nameCreate+".fr";
+        				user3b.setPassword (BCrypt.hashpw(passCreate, BCrypt.gensalt(10))); // using the setter of TestMyDB class because PassP is private
+        				//user3b.NomG = "Pong"; // Needed IF NomG is NOT NULL
+        				//NB: user3b.BestScore is an INT and set to 0 by JavaFX, so the DataBase NULL restriction won't give an error
+        				
+        				db.insert(user3b);
+        				System.out.println("New user created"); // just checking via sysout
+        				lbl.setText("Please connect with new credentials.");
+        				lbl.setTextFill(Color.PURPLE);
+        				lbl2.setText("Flappy leader: connection required");
+                		lbl2.setTextFill(Color.BLACK);
+                		lbl2.setVisible(false);
+        				stage.setTitle("Connect&Play");
+        			}
         		}
         		else {
         			lbl.setText("Please add a name and a password to do this.");
@@ -755,7 +783,7 @@ public class App extends Application {
                     {
                     	//if scoreP1 > maxFlap then db.update()
                         if ((score) > maxFlap || ((score) >= 50 && maxFlap >= 100)) {
-                        	TestMyDB userF = db.where("NomP=?", nameRecall).first(TestMyDB.class);
+                        	TestMyDB userF = db.where("name=?", nameRecall).first(TestMyDB.class);
                         	if ((score) > maxFlap) {
                         		userF.BestFlap = (score);
                             	maxFlap = (score);

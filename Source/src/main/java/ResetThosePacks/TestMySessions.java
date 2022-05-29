@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 import java.util.Date;
 
-@Table(name="sessions_v2_3")
+@Table(name="sessions")
 public class TestMySessions {
 	@Id
 	@GeneratedValue
