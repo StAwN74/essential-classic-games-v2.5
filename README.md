@@ -3,7 +3,7 @@
 Stats are now displayed on the web! Visit and use the new messaging app -> https://www.stawn.live  
 You have the right to claim the deletion of your user account.  
 Contact me here for any question or request, or send a message to the [Admin](https://www.stawn.live/messages/create) through the website.  
-Only 3 cookies are used on the site: one which keeps you logged in and prevents every page from asking passwords, the 'Remember me' cookie,  
+Only 3 cookies are used on the site: one which keeps you logged in and prevents every page from asking passwords, the 'Remember me' cookie, 
 and a token cookie to prevent another browsing or command using user, from sending illegal data to the server. 
 
 ## Requirements
